@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#20594d"><meta name="description" content="A quiet place for your PDFs. Import, read, and listen.">
+  <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./style.css"><title>Leaf — PDF listener</title>
+</head>
+<body>
+  <header><a class="brand" href="./"><span class="logo">◒</span> leaf<span class="brand-detail">PDF LISTENER</span></a><span class="local-badge">● Your library, on this device</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">A LITTLE SPACE TO SLOW DOWN</p><h1>Turn a page.<br><em>Or just listen.</em></h1><p>Your books, papers, and ideas. A little easier to take in.</p></div><div class="intro-art" aria-hidden="true"><span>Listen.<br>Learn.<br>Leaf.</span><div class="waves">▂ ▅ █ ▃ ▆ ▂</div></div></section>
+    <div id="status" role="status" aria-live="polite">Ready when you are. Import a text-based PDF to begin.</div>
+    <div class="workspace">
+      <aside><div class="section-heading"><h2>Your library</h2><span id="book-count">0 books</span></div>
+        <label class="import" id="dropzone" tabindex="0"><input id="file" type="file" accept="application/pdf,.pdf" multiple hidden><span class="plus">＋</span><strong>Bring a PDF</strong><span>Choose a file or drop it here</span><small>Text-based PDFs · up to 40 MB each</small></label>
+        <div id="library"></div><button id="sample" class="text-button">Try a short sample ↗</button>
+        <p class="storage-note">Saved in this browser, on this device. Clearing site data removes your library.</p>
+      </aside>
+      <section class="reader" aria-labelledby="book-title"><div class="reader-top"><span class="eyebrow">YOUR READING SPACE</span><span id="page-count">—</span></div><h2 id="book-title">A good read starts here.</h2>
+        <div id="empty"><div class="empty-icon">≋</div><h3>Make room for a good idea.</h3><p>Import a PDF or try the sample.<br>We’ll keep your place for next time.</p></div>
+        <div id="reading" hidden><div class="page-nav"><button id="prev-page" aria-label="Previous page">←</button><label>Page <select id="page" aria-label="Choose page"></select></label><button id="next-page" aria-label="Next page">→</button></div><p class="tap-hint">Tap a passage to start there.</p><div id="passages"></div></div>
+        <div class="player"><div class="progress-line"><span id="position">Nothing queued</span><span id="percent">0%</span></div><progress id="progress" max="100" value="0" aria-label="Reading progress"></progress>
+          <div class="transport"><button id="back" aria-label="Previous passage" disabled>↶</button><button id="play" class="primary" disabled>▶ Listen</button><button id="forward" aria-label="Next passage" disabled>↷</button></div>
+          <div class="settings"><label>VOICE<select id="voice"><option value="">Device default</option></select></label><label>SPEED<select id="rate"><option value="0.75">0.75×</option><option value="1" selected>1× · Normal</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select></label></div><p id="voice-note" class="fine-print">Uses your browser’s speech service. Some voices require internet.</p>
+        </div>
+      </section>
+    </div>
+    <footer><strong>Made for listening, at your pace.</strong><p>PDF text is extracted on your device. Selected speech services may process text online. Keep this app open while listening; locked-screen playback varies by browser.</p><details><summary>Using Leaf on iPhone & offline</summary><p>Open the hosted app in Safari. Use Share → Add to Home Screen for an app-like shortcut. After the first successful load, the app is cached for offline use. Offline speech requires a voice available locally on your device. Scanned and password-protected PDFs are not supported in this version. Complex columns and tables may read out of order.</p></details><span id="offline-state">Preparing offline app…</span></footer>
+  </main><noscript>This app requires JavaScript to read PDFs and play speech.</noscript><script type="module" src="./app.js"></script>
+</body></html>

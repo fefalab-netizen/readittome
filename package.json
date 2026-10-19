@@ -1,0 +1,1 @@
+{"name":"leaf-pdf-listener","version":"1.0.0","private":true,"type":"module","scripts":{"prepare-offline":"node prepare-offline.mjs","test":"node --test test/*.test.mjs"}}
