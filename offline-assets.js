@@ -1,10 +1,11 @@
-self.LEAF_VERSION = "56692ccf49540f60";
+self.LEAF_VERSION = "a8fbae86c6d8511a";
 self.LEAF_ASSETS = [
   "./",
   "./app.js",
   "./icon.svg",
   "./index.html",
   "./manifest.webmanifest",
+  "./pdf-text.js",
   "./style.css",
   "./text.js",
   "./vendor/package/LICENSE",

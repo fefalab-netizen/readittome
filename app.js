@@ -1,4 +1,5 @@
 import { chunks, extractLines } from './text.js';
+import { readPageText } from './pdf-text.js';
 const $ = id => document.getElementById(id);
 const synth = window.speechSynthesis;
 let books = [], current = null, db = null, voices = [], playing = false, generation = 0, importing = false, utterance = null;
@@ -129,7 +130,7 @@ async function importFiles(files) {
       const segments = []; let blank = 0;
       for (let page = 1; page <= pdf.numPages; page++) {
         say(`Reading ${file.name} · page ${page} of ${pdf.numPages}…`);
-        const pdfPage = await pdf.getPage(page), content = await pdfPage.getTextContent();
+        const pdfPage = await pdf.getPage(page), content = await readPageText(pdfPage);
         const parts = chunks(extractLines(content.items)); if (!parts.length) blank++;
         segments.push(...parts.map(text => ({ page, text }))); pdfPage.cleanup();
         await new Promise(resolve => setTimeout(resolve, 0));
