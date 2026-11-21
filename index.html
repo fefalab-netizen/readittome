@@ -1,31 +1,44 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#20594d"><meta name="description" content="A quiet place for your PDFs. Import, read, and listen.">
-  <link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./style.css"><title>Leaf — PDF listener</title>
-</head>
-<body>
-  <header><a class="brand" href="./"><span class="logo">◒</span> leaf<span class="brand-detail">PDF LISTENER</span></a><span class="local-badge">● Your library, on this device</span></header>
-  <main>
-    <section class="intro"><div><p class="eyebrow">A LITTLE SPACE TO SLOW DOWN</p><h1>Turn a page.<br><em>Or just listen.</em></h1><p>Your books, papers, and ideas. A little easier to take in.</p></div><div class="intro-art" aria-hidden="true"><span>Listen.<br>Learn.<br>Leaf.</span><div class="waves">▂ ▅ █ ▃ ▆ ▂</div></div></section>
-    <div id="status" role="status" aria-live="polite">Ready when you are. Import a text-based PDF to begin.</div>
-    <div class="workspace">
-      <aside><div class="section-heading"><h2>Your library</h2><span id="book-count">0 books</span></div>
-        <label class="import" id="dropzone" tabindex="0"><input id="file" type="file" accept="application/pdf,.pdf" multiple hidden><span class="plus">＋</span><strong>Bring a PDF</strong><span>Choose a file or drop it here</span><small>Text-based PDFs · up to 40 MB each</small></label>
-        <div id="library"></div><button id="sample" class="text-button">Try a short sample ↗</button>
-        <p class="storage-note">Saved in this browser, on this device. Clearing site data removes your library.</p>
-      </aside>
-      <section class="reader" aria-labelledby="book-title"><div class="reader-top"><span class="eyebrow">YOUR READING SPACE</span><span id="page-count">—</span></div><h2 id="book-title">A good read starts here.</h2>
-        <div id="empty"><div class="empty-icon">≋</div><h3>Make room for a good idea.</h3><p>Import a PDF or try the sample.<br>We’ll keep your place for next time.</p></div>
-        <div id="reading" hidden><div class="page-nav"><button id="prev-page" aria-label="Previous page">←</button><label>Page <select id="page" aria-label="Choose page"></select></label><button id="next-page" aria-label="Next page">→</button></div><p class="tap-hint">Tap a passage to start there.</p><div id="passages"></div></div>
-        <div class="player"><div class="progress-line"><span id="position">Nothing queued</span><span id="percent">0%</span></div><progress id="progress" max="100" value="0" aria-label="Reading progress"></progress>
-          <div class="transport"><button id="back" aria-label="Previous passage" disabled>↶</button><button id="play" class="primary" disabled>▶ Listen</button><button id="forward" aria-label="Next passage" disabled>↷</button></div>
-          <div class="settings"><label>VOICE<select id="voice"><option value="">Device default</option></select></label><label>SPEED<select id="rate"><option value="0.75">0.75×</option><option value="1" selected>1× · Normal</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select></label></div><p id="voice-note" class="fine-print">Uses your browser’s speech service. Some voices require internet.</p>
-        </div>
-      </section>
-    </div>
-    <footer><strong>Made for listening, at your pace.</strong><p>PDF text is extracted on your device. Selected speech services may process text online. Keep this app open while listening; locked-screen playback varies by browser.</p><details><summary>Using Leaf on iPhone & offline</summary><p>Open the hosted app in Safari. Use Share → Add to Home Screen for an app-like shortcut. After the first successful load, the app is cached for offline use. Offline speech requires a voice available locally on your device. Scanned and password-protected PDFs are not supported in this version. Complex columns and tables may read out of order.</p></details><span id="offline-state">Preparing offline app…</span></footer>
-  </main><noscript>This app requires JavaScript to read PDFs and play speech.</noscript><script type="module" src="./app.js"></script>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#20594d"><meta name="description" content="Your PDFs, read aloud at your pace.">
+<link rel="manifest" href="./manifest.webmanifest"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css"><title>Leaf — PDF listener</title>
+</head><body>
+<header><a class="brand" href="./"><span class="logo">◒</span> leaf<span class="brand-detail">PDF LISTENER</span></a><div class="header-actions"><span id="version">Leaf</span><button id="check-update">Check for updates</button><button id="apply-update" hidden>Update available · Reload</button></div></header>
+<main>
+<section class="intro"><div><p class="eyebrow">A LITTLE SPACE TO SLOW DOWN</p><h1>Turn a page.<br><em>Or just listen.</em></h1><p>Your books, papers, and ideas. A little easier to take in.</p></div><div class="intro-art" aria-hidden="true"><span>Listen.<br>Learn.<br>Leaf.</span><div class="waves">▂ ▅ █ ▃ ▆ ▂</div></div></section>
+<div id="status" role="status" aria-live="polite">Ready when you are. Import a text-based PDF to begin.</div>
+<div class="workspace"><aside>
+<div class="section-heading"><h2>Your library</h2><span id="book-count">0 books</span></div>
+<label class="import" id="dropzone" tabindex="0"><input id="file" type="file" accept="application/pdf,.pdf" multiple hidden><span class="plus">＋</span><strong>Bring a PDF</strong><span>Choose a file or drop it here</span><small>Text-based PDFs · up to 40 MB each</small></label>
+<label class="field">Find a book<input id="search" type="search" placeholder="Search titles"></label>
+<label class="field">Sort library<select id="sort"><option value="recent">Recently listened</option><option value="added">Recently added</option><option value="title">Title A–Z</option></select></label>
+<div id="library"></div><button id="sample" class="text-button">Try a short sample</button>
+<p class="storage-note">Saved in this browser, on this device. Clearing site data removes your library.</p>
+<details class="preferences"><summary>Reading preferences</summary>
+<label class="field">Theme<select id="theme"><option value="system">Use device setting</option><option value="light">Light</option><option value="dark">Dark</option></select></label>
+<label class="field">Text size<select id="font-size"><option value="17">Small</option><option value="20" selected>Medium</option><option value="24">Large</option><option value="28">Extra large</option></select></label>
+<label class="check"><input id="follow" type="checkbox" checked> Follow the spoken passage</label>
+<label class="check"><input id="keep-awake" type="checkbox"> Keep screen awake while listening</label><p id="wake-state" class="fine-print"></p>
+</details>
+<details class="preferences"><summary>Text cleanup</summary><p class="fine-print">Applied to new imports. You can also rebuild a saved book’s text. Turn these off if meaningful content is removed.</p>
+<label class="check"><input id="clean-margins" type="checkbox" checked> Skip repeated headers and footers</label>
+<label class="check"><input id="clean-numbers" type="checkbox" checked> Skip page numbers at page edges</label>
+<button id="reclean" disabled>Apply to this book</button><p class="fine-print">Reimport older library entries once to enable cleanup. Their reading position and bookmarks will be retained where possible.</p>
+</details>
+</aside><section class="reader" aria-labelledby="book-title">
+<div class="reader-top"><span class="eyebrow">YOUR READING SPACE</span><span id="page-count">—</span></div><h2 id="book-title">A good read starts here.</h2>
+<div id="empty"><div class="empty-icon">≋</div><h3>Make room for a good idea.</h3><p>Import a PDF or try the sample.<br>We’ll keep your place for next time.</p></div>
+<div id="reading" hidden><div class="page-nav"><button id="prev-page" aria-label="Previous page">Previous</button><label>Page <select id="page" aria-label="Choose page"></select></label><button id="next-page" aria-label="Next page">Next</button></div><p class="tap-hint">Tap a passage to start there. The current word is marked when your voice supports it.</p><div id="passages"></div>
+<div class="bookmark-tools"><button id="add-bookmark">Bookmark this spot</button><span id="bookmark-count"></span></div><div id="bookmarks" aria-label="Bookmarks"></div></div>
+<div class="player"><div class="progress-line"><span id="position">Nothing queued</span><span id="percent">0%</span></div><progress id="progress" max="100" value="0" aria-label="Reading progress"></progress>
+<div class="transport"><button id="back" aria-label="Previous passage" disabled>Previous</button><button id="play" class="primary" disabled>▶ Listen</button><button id="forward" aria-label="Next passage" disabled>Next</button></div>
+<div class="settings"><label>VOICE<select id="voice"><option value="">Device default</option></select></label><label>SPEED<select id="rate"><option value="0.75">0.75×</option><option value="1" selected>1× · Normal</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option><option value="1.75">1.75×</option><option value="2">2×</option></select></label></div>
+<p id="voice-note" class="fine-print">Uses your browser’s speech service. Some voices require internet.</p>
+<div class="sleep-row"><label>Sleep timer <select id="sleep"><option value="0">Off</option><option value="5">5 minutes</option><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="60">60 minutes</option></select></label><span id="sleep-status" role="status"></span></div>
+<details class="local-voice"><summary>Download a local AI voice</summary><p>Optional English narration with Kokoro. About 120 MB for the model and runtime. Text stays on your device. Downloads come from this site and Hugging Face; processing can be slow on older phones.</p><div class="inline-actions"><button id="download-voice">Download & test voices</button><button id="cancel-voice" hidden>Cancel</button><button id="remove-voice">Remove voice download</button></div><p id="local-state" role="status" aria-live="polite">Not loaded. Browser voices remain available.</p><p class="fine-print">Includes Heart and Michael. A small test runs before the voices become available. Browser storage may be evicted; offline availability is checked when loading.</p></details>
+</div></section></div>
+<footer><strong>Made for listening, at your pace.</strong><p>PDFs are processed on this device. Browser voices marked online may send text to their speech provider. Keep Leaf open while listening; background and locked-screen playback depend on your browser.</p><details><summary>Using Leaf on iPhone & offline</summary><p>In Safari, choose Share → Add to Home Screen. Wait for “App ready offline” before disconnecting. Downloaded AI voices work locally once cached; browser voices may need internet. Scanned and password-protected PDFs are not supported. Columns and tables may still read out of order. Library entries store extracted text, not the original PDF layout.</p></details><span id="offline-state">Preparing offline app…</span></footer>
+</main><noscript>This app requires JavaScript to read PDFs and play speech.</noscript><script type="module" src="./app.js"></script>
 </body></html>

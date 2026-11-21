@@ -1,13 +1,18 @@
-self.LEAF_VERSION = "a8fbae86c6d8511a";
+self.LEAF_VERSION = "400b281524d3ab66";
 self.LEAF_ASSETS = [
   "./",
   "./app.js",
+  "./cleanup.js",
   "./icon.svg",
   "./index.html",
+  "./local-voice.js",
   "./manifest.webmanifest",
+  "./narrator.js",
   "./pdf-text.js",
+  "./reader-state.js",
   "./style.css",
   "./text.js",
+  "./updates.js",
   "./vendor/package/LICENSE",
   "./vendor/package/cmaps/78-EUC-H.bcmap",
   "./vendor/package/cmaps/78-EUC-V.bcmap",
@@ -208,5 +213,7 @@ self.LEAF_ASSETS = [
   "./vendor/package/wasm/openjpeg_nowasm_fallback.js",
   "./vendor/package/wasm/qcms_bg.wasm",
   "./vendor/package/wasm/quickjs-eval.js",
-  "./vendor/package/wasm/quickjs-eval.wasm"
+  "./vendor/package/wasm/quickjs-eval.wasm",
+  "./voice-config.js",
+  "./voice-worker.js"
 ];
